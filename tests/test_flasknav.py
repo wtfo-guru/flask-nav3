@@ -1,7 +1,7 @@
 import pytest
 
 from flask import Flask
-from flask_nav.elements import View
+from flask_nav3.elements import View
 
 
 @pytest.fixture()

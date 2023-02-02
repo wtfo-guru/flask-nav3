@@ -1,6 +1,6 @@
 from flask import Flask, render_template
-from flask_nav import Nav
-from flask_nav.elements import *
+from flask_nav3 import Nav
+from flask_nav3.elements import *
 
 nav = Nav()
 
