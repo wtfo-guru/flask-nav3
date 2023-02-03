@@ -1,4 +1,6 @@
 exclude: '^docs/conf.py'
+default_install_hook_types:
+  - commit-msg
 
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -19,3 +21,14 @@ repos:
     args: ['--fix=auto']  # replace 'auto' with 'lf' to enforce Linux/Mac line endings or 'crlf' for Windows
   - id: no-commit-to-branch
     args: ['--branch', 'main']
+- repo: local
+  hooks:
+  - id: commit-msg
+    name: conventional commit messages
+    language: pygrep
+    entry: '^(chore|test|feat|fix|build|docs|refactor)!?: ((?!.*(ing))(?!.*(ed))).*$'
+  args:
+  - --multiline
+  - --negate # fails if the entry is NOT matched
+  stages:
+  - commit-msg
