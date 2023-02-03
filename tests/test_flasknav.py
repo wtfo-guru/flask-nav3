@@ -13,7 +13,7 @@ def app():
 
     @app.route("/hello/<arg1>/")
     def hello(arg1):  # noqa: WPS430
-        return str(app.hello_view.active)  # type: ignore [attr-defined]
+        return str(app.hello_view.active)
 
     return app
 
