@@ -1,6 +1,5 @@
 exclude: '^docs/conf.py'
-default_install_hook_types:
-  - commit-msg
+default_install_hook_types: ["pre-commit", "commit-mesg"]
 
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -27,8 +26,8 @@ repos:
     name: conventional commit messages
     language: pygrep
     entry: '^(chore|test|feat|fix|build|docs|refactor)!?: ((?!.*(ing))(?!.*(ed))).*$'
-  args:
-  - --multiline
-  - --negate # fails if the entry is NOT matched
-  stages:
-  - commit-msg
+    args:
+    - --multiline
+    - --negate # fails if the entry is NOT matched
+    stages:
+    - commit-msg
