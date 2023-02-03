@@ -4,7 +4,7 @@ PROJECT ?= $(shell git rev-parse --show-toplevel)
 DISTRO ?= ubuntu20.04
 PYVERS = 3.10.9
 
-.PHONY: black mypy lint sunit unit package test publish publish-test
+.PHONY: black mypy lint sunit unit package test publish publish-test chlog
 black:
 	poetry run isort .
 	poetry run black .
@@ -44,7 +44,6 @@ work38:
 work:
 	docker run --pull --rm -it --volume $(PROJECT):/project/ qs5779/python-testing:$(DISTRO)-$(PYVERS) /bin/bash
 
-.PHONY: chlog docs
 chlog:
 	github_changelog_generator -u wtfo-guru -p flask-nav3
 	sed -i -e '/^$$/N;/^\n$$/D' ./CHANGELOG.md
