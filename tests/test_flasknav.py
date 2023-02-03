@@ -12,8 +12,8 @@ def app():
     app.config["SERVER_NAME"] = "testing.local"
 
     @app.route("/hello/<arg1>/")
-    def hello(arg1):  # noqa: WPS430
-        return str(app.hello_view.active)  # type: ignore [attr-defined]
+    def hello(arg1):
+        return str(app.hello_view.active)
 
     return app
 

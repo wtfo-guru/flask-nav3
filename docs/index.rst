@@ -1,12 +1,19 @@
-.. include:: ../README.rst
+.. mdinclude:: ../README.md
 
-Documentation
--------------
+Contents
+--------
 
 .. toctree::
-   :maxdepth: 2
+  :maxdepth: 1
+  :caption: Contents
 
-   getting-started
-   advanced-topics
-   other-software
-   api
+  pages/changelog.rst
+  pages/contributing.rst
+
+
+Indices and tables
+------------------
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

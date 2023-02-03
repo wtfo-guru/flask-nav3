@@ -1,11 +1,11 @@
 import re
+import sys
 from importlib import import_module
-from sys import version_info
 
-if version_info >= (3, 7):
+if sys.version_info >= (3, 7):
     from collections.abc import MutableMapping
 else:
-    from collections import MutableMapping  # type: ignore
+    from collections import MutableMapping
 
 
 def register_renderer(app, iid, renderer, force=True):

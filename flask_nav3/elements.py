@@ -89,7 +89,7 @@ class View(Link):
         # because whether or not an external url is created depends on factors
         # outside our control
 
-        _, url = request.url_rule.build(  # type: ignore
+        _, url = request.url_rule.build(
             self.url_for_kwargs,
             append_unknown=not self.ignore_query,
         )

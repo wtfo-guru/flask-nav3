@@ -31,15 +31,15 @@ def create_app(configfile=None):
 
     # not good style, but like to keep our examples short
     @app.route("/")
-    def index():  # noqa: WPS430
+    def index():
         return render_template("index.html")
 
     @app.route("/products/<product>/")
-    def products(product):  # noqa: WPS430
+    def products(product):
         return render_template("index.html", msg="Buy our {0}".format(product))
 
     @app.route("/about-us/")
-    def about():  # noqa: WPS430
+    def about():
         return render_template("index.html")
 
     return app
