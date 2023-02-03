@@ -1,6 +1,5 @@
-from flask import current_app
-
 from dominate import tags
+from flask import current_app
 from visitor import Visitor
 
 
@@ -8,7 +7,8 @@ class Renderer(Visitor):
     """Base interface for navigation renderers.
 
     Visiting a node should return a string or an object that converts to a
-    string containing HTML."""
+    string containing HTML.
+    """
 
     def visit_object(self, node):
         """Fallback rendering for objects.
@@ -21,10 +21,13 @@ class Renderer(Visitor):
         Outside of debug-mode, returns an empty string.
         """
         if current_app.debug:
-            return tags.comment('no implementation in {} to render {}'.format(
-                self.__class__.__name__,
-                node.__class__.__name__, ))
-        return ''
+            return tags.comment(
+                "no implementation in {0} to render {1}".format(
+                    self.__class__.__name__,
+                    node.__class__.__name__,
+                ),
+            )
+        return ""
 
 
 class SimpleRenderer(Renderer):
@@ -37,13 +40,16 @@ class SimpleRenderer(Renderer):
     """
 
     def __init__(self, **kwargs):
+        """Constructor for ``SimpleRenderer``."""
         self.kwargs = kwargs
 
     def visit_Link(self, node):
+        """Returns arefs matching url."""
         return tags.a(node.text, href=node.get_url())
 
     def visit_Navbar(self, node):
-        kwargs = {'_class': 'navbar'}
+        """Returns navbar classes."""
+        kwargs = {"_class": "navbar"}
         kwargs.update(self.kwargs)
 
         cont = tags.nav(**kwargs)
@@ -55,20 +61,24 @@ class SimpleRenderer(Renderer):
         return cont
 
     def visit_View(self, node):
+        """Returns arefs."""
         kwargs = {}
         if node.active:
-            kwargs['_class'] = 'active'
-        return tags.a(node.text,
-                      href=node.get_url(),
-                      title=node.text,
-                      **kwargs)
+            kwargs["_class"] = "active"
+        return tags.a(
+            node.text,
+            href=node.get_url(),
+            title=node.text,
+            **kwargs,
+        )  # noqa: WPS221
 
     def visit_Subgroup(self, node):
-        group = tags.ul(_class='subgroup')
+        """Returns subgroup divs."""
+        group = tags.ul(_class="subgroup")
         title = tags.span(node.title)
 
         if node.active:
-            title.attributes['class'] = 'active'
+            title.attributes["class"] = "active"
 
         for item in node.items:
             group.add(tags.li(self.visit(item)))
@@ -76,7 +86,9 @@ class SimpleRenderer(Renderer):
         return tags.div(title, group)
 
     def visit_Separator(self, node):
-        return tags.hr(_class='separator')
+        """Returns separator hrs."""
+        return tags.hr(_class="separator")
 
     def visit_Text(self, node):
-        return tags.span(node.text, _class='nav-label')
+        """Returns nav-label spans."""
+        return tags.span(node.text, _class="nav-label")
