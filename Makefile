@@ -25,8 +25,6 @@ unit:
 package:
 	poetry check
 	poetry run pip check
-	# re-enable when safety supports packaging ^22.0
-	# poetry run safety check --full-report
 
 test: lint package unit
 
@@ -55,9 +53,6 @@ chlog:
 	mv -f ./CHANGELOG.rst ./docs/pages/changelog.rst
 	poetry run doc8 -q docs
 
-docs:
-	@cd docs && $(MAKE) $@
-
 .PHONY: clean clean-build clean-pyc clean-test
 clean: clean-build clean-pyc clean-test ## remove all build, test, coverage and Python artifacts
 
@@ -81,3 +76,7 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr htmlcov/
 	rm -fr .pytest_cache
 	rm -fr .mypy_cache
+
+
+.DEFAULT:
+	@cd docs && $(MAKE) $@
