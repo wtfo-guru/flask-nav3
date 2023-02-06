@@ -1,5 +1,6 @@
 exclude: '^docs/conf.py'
 default_install_hook_types: ["pre-commit", "commit-msg"]
+default_stages: ["commit"]
 
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
