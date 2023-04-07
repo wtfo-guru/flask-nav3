@@ -29,7 +29,6 @@ def hello_view(app):
 def test_view_arguments(app, hello_view):
     """Test view argumeents."""
     with app.app_context():
-
         # since we're using the app context, flask should generate an
         # external url. inside a real request, chances are a relative url
         # would be generated instead
