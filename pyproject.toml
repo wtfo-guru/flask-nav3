@@ -45,7 +45,7 @@ pytest = "^7.1"
 pytest-cov = "^4.0"
 pytest-randomly = "^3.12"
 black = ">=22.12,<24.0"
-setuptools = ">=65.6.3,<68.0.0"
+setuptools = ">=65.6.3,<69.0.0"
 packaging = ">=22,<24"
 importlib-metadata = { version = "<5.0", python = "<3.8" }
 testfixtures = "^7.0.4"
