@@ -52,7 +52,7 @@ testfixtures = "^7.0.4"
 optional = true
 
 [tool.poetry.group.docs.dependencies]
-sphinx = "^5.2"
+sphinx = ">=5.2,<8.0"
 sphinx-autodoc-typehints = "^1.19"
 m2r2 = "^0.3"
 tomli = "^2.0"
