@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "flask-nav3"
 description = "Easily create navigation for Flask applications."
-version = "0.7.1-dev5"
+version = "0.7.1-dev6"
 license = "MIT"
 
 authors = [
