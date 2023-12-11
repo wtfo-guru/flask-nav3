@@ -29,7 +29,6 @@ class Renderer(Visitor):
             )
         return ""
 
-
 class SimpleRenderer(Renderer):
     """A very basic HTML5 renderer.
 
@@ -92,3 +91,73 @@ class SimpleRenderer(Renderer):
     def visit_Text(self, node):
         """Returns nav-label spans."""
         return tags.span(node.text, _class="nav-label")
+
+
+class BootStrapRenderer(Renderer):
+    """A very basic Bootstrap 5 renderer.
+
+    Renders a navigational structure using ``<nav>`` and ``<ul>`` tags that
+    can be styled using modern CSS.
+
+    :param kwargs: Additional attributes to pass on to the root ``<nav>``-tag.
+    """
+
+    def __init__(self, **kwargs):
+        """Constructor for ``SimpleRenderer``."""
+        self.kwargs = kwargs
+
+    def visit_Link(self, node):
+        """Returns arefs matching url."""
+        return tags.a(node.text, href=node.get_url(), _class='nav-link')
+
+    def visit_Navbar(self, node):
+        """Returns navbar classes."""
+        kwargs = self.kwargs.copy()
+
+        _class = []
+        if "class" in self.kwargs:
+            _class = kwargs['class'].split(" ")
+
+        kwargs['class'] = " ".join(_class + ["navbar", "navbar-expand-lg"])
+
+        cont = tags.nav(**kwargs)
+        ul = cont.add(tags.ul(_class=" ".join(_class + ["nav"])))
+
+        for item in node.items:
+            ul.add(tags.li(self.visit(item), _class="nav-item"))
+
+        return cont
+
+    def visit_View(self, node):
+        """Returns arefs."""
+        kwargs = {"class": 'nav-link'}
+        if node.active:
+            kwargs["_class"] = "nav-link active"
+        return tags.a(
+            node.text,
+            href=node.get_url(),
+            title=node.text,
+            **kwargs,
+        )  # noqa: WPS221
+
+    def visit_Subgroup(self, node):
+        """Returns subgroup divs."""
+        group = tags.ul(_class="dropdown-menu")
+        kwargs = {"data-bs-toggle": "dropdown"}
+        title = tags.a(node.title, href="#", _class='nav-link dropdown-toggle', **kwargs)
+
+        if node.active:
+            title.attributes["class"] = "active"
+
+        for item in node.items:
+            group.add(tags.li(self.visit(item), _class="dropdown-item"))
+
+        return tags.div(title, group)
+
+    def visit_Separator(self, node):
+        """Returns separator hrs."""
+        return tags.hr(_class="dropdown-divider")
+
+    def visit_Text(self, node):
+        """Returns nav-label spans."""
+        return tags.a(node.text, _class="nav-link disabled")
