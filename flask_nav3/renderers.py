@@ -147,7 +147,7 @@ class BootStrapRenderer(Renderer):
         title = tags.a(node.title, href="#", _class='nav-link dropdown-toggle', **kwargs)
 
         if node.active:
-            title.attributes["class"] = "active"
+            title.attributes["class"] = "nav-link dropdown-toggle active"
 
         for item in node.items:
             group.add(tags.li(self.visit(item), _class="dropdown-item"))
