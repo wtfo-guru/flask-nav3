@@ -152,7 +152,7 @@ class BootStrapRenderer(Renderer):
         for item in node.items:
             group.add(tags.li(self.visit(item), _class="dropdown-item"))
 
-        return tags.div(title, group)
+        return tags.div(title, group, _class="dropdown")
 
     def visit_Separator(self, node):
         """Returns separator hrs."""
