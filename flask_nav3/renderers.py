@@ -29,6 +29,7 @@ class Renderer(Visitor):
             )
         return ""
 
+
 class SimpleRenderer(Renderer):
     """A very basic HTML5 renderer.
 
@@ -108,20 +109,20 @@ class BootStrapRenderer(Renderer):
 
     def visit_Link(self, node):
         """Returns arefs matching url."""
-        return tags.a(node.text, href=node.get_url(), _class='nav-link')
+        return tags.a(node.text, href=node.get_url(), _class="nav-link")
 
     def visit_Navbar(self, node):
         """Returns navbar classes."""
         kwargs = self.kwargs.copy()
 
-        _class = []
+        addclass = []
         if "class" in self.kwargs:
-            _class = kwargs['class'].split(" ")
+            addclass = kwargs["class"].split(" ")
 
-        kwargs['class'] = " ".join(_class + ["navbar", "navbar-expand-lg"])
+        kwargs["class"] = " ".join(addclass + ["navbar", "navbar-expand-lg"])
 
         cont = tags.nav(**kwargs)
-        ul = cont.add(tags.ul(_class=" ".join(_class + ["nav"])))
+        ul = cont.add(tags.ul(_class=" ".join(addclass + ["nav"])))
 
         for item in node.items:
             ul.add(tags.li(self.visit(item), _class="nav-item"))
@@ -130,7 +131,7 @@ class BootStrapRenderer(Renderer):
 
     def visit_View(self, node):
         """Returns arefs."""
-        kwargs = {"class": 'nav-link'}
+        kwargs = {"class": "nav-link"}
         if node.active:
             kwargs["_class"] = "nav-link active"
         return tags.a(
@@ -144,7 +145,12 @@ class BootStrapRenderer(Renderer):
         """Returns subgroup divs."""
         group = tags.ul(_class="dropdown-menu")
         kwargs = {"data-bs-toggle": "dropdown"}
-        title = tags.a(node.title, href="#", _class='nav-link dropdown-toggle', **kwargs)
+        title = tags.a(
+            node.title,
+            href="#",
+            _class="nav-link dropdown-toggle",
+            **kwargs,
+        )
 
         if node.active:
             title.attributes["class"] = "nav-link dropdown-toggle active"

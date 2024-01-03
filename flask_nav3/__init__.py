@@ -101,6 +101,7 @@ class Nav(object):
     """The Flask-Nav extension.
 
     :param app: An optional :class:`~flask.Flask` app to initialize.
+    :param bootstrap: Use bootstrap 5 rendering. Default: False.
     """
 
     def __init__(self, app=None, bootstrap=False):
@@ -110,6 +111,7 @@ class Nav(object):
         ----------
         app : Flask, optional
             The Flask app, by default None
+        bootstrap: Use bootstrap 5 rendering. Default: False.
         """
         self.bootstrap = bootstrap
         self.elems = ElementRegistry()
@@ -130,6 +132,7 @@ class Nav(object):
         """Initialize an application.
 
         :param app: A :class:`~flask.Flask` app.
+        :param bootstrap: Use bootstrap 5 rendering. Default: False.
         """
         self.bootstrap = bootstrap
         if not hasattr(app, "extensions"):
