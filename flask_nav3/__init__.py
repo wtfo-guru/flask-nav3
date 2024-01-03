@@ -111,7 +111,8 @@ class Nav(object):
         ----------
         app : Flask, optional
             The Flask app, by default None
-        bootstrap: Use bootstrap 5 rendering. Default: False.
+        bootstrap: boolean
+            Use bootstrap 5 rendering. Default: False.
         """
         self.bootstrap = bootstrap
         self.elems = ElementRegistry()
