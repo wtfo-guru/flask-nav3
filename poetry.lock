@@ -1940,19 +1940,19 @@ test = ["pylint", "pytest", "pytest-black", "pytest-cov", "pytest-pylint"]
 
 [[package]]
 name = "testfixtures"
-version = "7.2.2"
+version = "8.0.0"
 description = "A collection of helpers and mock objects for unit tests and doc tests."
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 files = [
-    {file = "testfixtures-7.2.2-py3-none-any.whl", hash = "sha256:c72adaf9c7b06882b0ea379dd8159422ca2be0205eedc7c3fee0074cd32f45fa"},
-    {file = "testfixtures-7.2.2.tar.gz", hash = "sha256:80774aecb0249458275ab783f53093fbe75795ff2b3218d22ce3fff0a12c4da6"},
+    {file = "testfixtures-8.0.0-py3-none-any.whl", hash = "sha256:8a71c4f1d782a9fbc8041e530db93f59f9bb49a36062e5677a748a779b0a2f11"},
+    {file = "testfixtures-8.0.0.tar.gz", hash = "sha256:b8d61206c7426545443edaee714553cd8d2d1203276c6a6b36282a86667e6d4e"},
 ]
 
 [package.extras]
 build = ["setuptools-git", "twine", "wheel"]
-docs = ["django", "furo", "sphinx", "sybil (>=3)", "twisted", "zope.component"]
-test = ["django", "mypy", "pytest (>=3.6)", "pytest-cov", "pytest-django", "sybil (>=3)", "twisted", "zope.component"]
+docs = ["django", "furo", "sphinx", "sybil (>=6)", "twisted"]
+test = ["django", "mypy", "pytest (>=7.1)", "pytest-cov", "pytest-django", "sybil (>=6)", "twisted"]
 
 [[package]]
 name = "text-unidecode"
@@ -2131,4 +2131,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8.1,<4.0"
-content-hash = "10b9faa0b876083456e7549d7741ee26db4d15e0e5299c8dbf42514b4cfeefc7"
+content-hash = "0619ee9d4bbb0d0a67620665133cc6a4de6fe7517ba96b833c3e3cd0428ab472"
