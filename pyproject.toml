@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "flask-nav3"
 description = "Easily create navigation for Flask applications."
-version = "0.7.1-dev8"
+version = "0.7.1-dev9"
 license = "MIT"
 
 authors = [
@@ -56,7 +56,7 @@ optional = true
 
 [tool.poetry.group.docs.dependencies]
 sphinx = ">=5.2,<8.0"
-sphinx-autodoc-typehints = "^1.24"
+sphinx-autodoc-typehints = ">=1.24,<3.0"
 m2r2 = "^0.3"
 tomli = "^2.0"
 
