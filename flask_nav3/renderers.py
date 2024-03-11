@@ -94,7 +94,7 @@ class SimpleRenderer(Renderer):
         return tags.span(node.text, _class="nav-label")
 
 
-class BootStrapRenderer(Renderer):
+class BootStrap5Renderer(Renderer):
     """A very basic Bootstrap 5 renderer.
 
     Renders a navigational structure using ``<nav>`` and ``<ul>`` tags that

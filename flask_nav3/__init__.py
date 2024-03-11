@@ -32,8 +32,6 @@ def get_renderer(app, iid):  # noqa: WPS210
     :param app: :class:`~flask.Flask` application to look ``iid`` up on
     :param iid: Internal renderer id-string to look up
     """
-    if iid is None and app.extensions["nav"].bootstrap:
-        iid = "bootstrap"
     renderer = app.extensions.get("nav_renderers", {})[iid]
 
     if isinstance(renderer, tuple):
@@ -101,41 +99,35 @@ class Nav(object):
     """The Flask-Nav extension.
 
     :param app: An optional :class:`~flask.Flask` app to initialize.
-    :param bootstrap: Use bootstrap 5 rendering. Default: False.
     """
 
-    def __init__(self, app=None, bootstrap=False):
+    def __init__(self, app=None):
         """Construct a Nav instance.
 
         Parameters
         ----------
         app : Flask, optional
             The Flask app, by default None
-        bootstrap: boolean
-            Use bootstrap 5 rendering. Default: False.
         """
-        self.bootstrap = bootstrap
         self.elems = ElementRegistry()
 
         # per default, register the simple renderer
         simple = "{0}.renderers".format(__name__), "SimpleRenderer"
-        bootstrap = "{0}.renderers".format(__name__), "BootStrapRenderer"
+        bootstrap5 = "{0}.renderers".format(__name__), "BootStrap5Renderer"
         self._renderers = [
             ("simple", simple),
-            ("bootstrap", bootstrap),
+            ("bootstrap5", bootstrap5),
             (None, simple, False),
         ]
 
         if app:
             self.init_app(app)
 
-    def init_app(self, app, bootstrap=False):
+    def init_app(self, app):
         """Initialize an application.
 
         :param app: A :class:`~flask.Flask` app.
-        :param bootstrap: Use bootstrap 5 rendering. Default: False.
         """
-        self.bootstrap = bootstrap
         if not hasattr(app, "extensions"):
             app.extensions = {}
 
