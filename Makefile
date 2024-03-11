@@ -5,6 +5,11 @@ DISTRO ?= ubuntu20.04
 PYVERS = 3.10.9
 
 .PHONY: black mypy lint sunit unit package test publish publish-test chlog
+
+.PHONY: update
+update:
+	poetry update --with test
+
 black:
 	poetry run isort .
 	poetry run black .
