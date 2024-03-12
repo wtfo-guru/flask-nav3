@@ -8,7 +8,7 @@ PYVERS = 3.10.9
 
 .PHONY: update
 update:
-	poetry update --with test
+	poetry update --with test --with docs
 
 black:
 	poetry run isort .
@@ -33,10 +33,10 @@ package:
 
 test: lint package unit
 
-publish: test
+publish: test clean
 	poetry publish --build
 
-publish-test: test
+publish-test: test clean
 	poetry publish --build -r test-pypi
 
 .PHONY: work37 work38 work
