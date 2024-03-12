@@ -8,7 +8,7 @@ PYVERS = 3.10.9
 
 .PHONY: update
 update:
-	poetry update --with test
+	poetry update --with test --with docs
 
 black:
 	poetry run isort .
