@@ -33,10 +33,10 @@ package:
 
 test: lint package unit
 
-publish: test
+publish: test clean
 	poetry publish --build
 
-publish-test: test
+publish-test: test clean
 	poetry publish --build -r test-pypi
 
 .PHONY: work37 work38 work
