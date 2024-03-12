@@ -113,8 +113,10 @@ class Nav(object):
 
         # per default, register the simple renderer
         simple = "{0}.renderers".format(__name__), "SimpleRenderer"
+        bootstrap5 = "{0}.renderers".format(__name__), "BootStrap5Renderer"
         self._renderers = [
             ("simple", simple),
+            ("bootstrap5", bootstrap5),
             (None, simple, False),
         ]
 
