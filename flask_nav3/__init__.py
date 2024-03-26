@@ -95,7 +95,7 @@ class ElementRegistry(MutableMapping):  # type: ignore [type-arg]
         return len(self._elems)
 
 
-class Nav(object):
+class Nav:
     """The Flask-Nav extension.
 
     :param app: An optional :class:`~flask.Flask` app to initialize.
