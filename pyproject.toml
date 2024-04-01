@@ -48,7 +48,7 @@ isort = "^5.13"
 black = ">=23.12,<25.0"
 setuptools = "^69.0"
 packaging = ">=22,<24"
-importlib-metadata = { version = "<5.0", python = "<3.8" }
+importlib-metadata = { version = "<8.0", python = "<3.8" }
 testfixtures = ">=7.0.4,<9.0.0"
 
 [tool.poetry.group.docs]
