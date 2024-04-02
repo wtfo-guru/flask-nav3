@@ -4,7 +4,7 @@ from markupsafe import Markup
 from flask_nav3 import get_renderer
 
 
-class NavigationItem(object):
+class NavigationItem:
     """Base for all items in a Navigation.
 
     Every item inside a navigational view should derive from this class.
