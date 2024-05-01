@@ -4,7 +4,7 @@ from flask import Flask
 from flask_nav3.elements import View
 
 
-@pytest.fixture()
+@pytest.fixture
 def app():
     """App fixture."""
     app = Flask(__name__)
@@ -18,7 +18,7 @@ def app():
     return app
 
 
-@pytest.fixture()
+@pytest.fixture
 def hello_view(app):
     """Hello view fixture."""
     vv = View("notext", "hello", arg1=1, q1="q")
