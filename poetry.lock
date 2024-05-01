@@ -117,6 +117,7 @@ toml = ["tomli (>=1.1.0)"]
 yaml = ["PyYAML"]
 
 [[package]]
+name = "black"
 version = "24.4.2"
 description = "The uncompromising code formatter."
 optional = false
@@ -2428,4 +2429,3 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 lock-version = "2.0"
 python-versions = ">=3.9,<4.0"
 content-hash = "d5329d7b11c84fa1ab2b5ef81685f23e3be32976d3f97c7555a9ce49bb8d45e4"
-
