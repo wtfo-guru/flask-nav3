@@ -1,15 +1,16 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
 ---
-exclude: '^docs/conf.py'
+exclude: '^attic/$|^docs/conf.py'
 default_install_hook_types: ["pre-commit", "commit-msg"]
 default_stages: ["commit"]
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v4.6.0
     hooks:
       - id: trailing-whitespace
       - id: check-added-large-files
-        args: ['--maxkb=650']
       - id: check-ast
       - id: check-json
       - id: check-merge-conflict
@@ -19,7 +20,7 @@ repos:
       - id: end-of-file-fixer
       - id: requirements-txt-fixer
       - id: mixed-line-ending
-        args: ['--fix=auto']  # use 'lf' to enforce *nix or 'crlf' for Windows
+        args: ['--fix=auto']  # replace 'auto' with 'lf' to enforce Linux/Mac line endings or 'crlf' for Windows
       - id: no-commit-to-branch
         args: ['--branch', 'main']
 
@@ -27,9 +28,10 @@ repos:
     rev: 5.13.2
     hooks:
       - id: isort
+        name: isort (python)
 
   - repo: https://github.com/psf/black
-    rev: 24.3.0  # stable 0
+    rev: 24.4.2  # stable 0
     hooks:
       - id: black
         language_version: python3
@@ -41,6 +43,12 @@ repos:
         args: ['--max-line-length=88', '--show-source']
         additional_dependencies: [wemake-python-styleguide >= 0.19.2]
 
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v3.27.0
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
+
   - repo: local
     hooks:
       - id: encryption-check
@@ -49,10 +57,3 @@ repos:
         entry: /usr/local/bin/encryption-check.sh
         files: ((^|/)vault|vault.y[a]{0,1}ml$|.vault$)
         language: script
-      - id: commit-msg
-        name: conventional commit messages
-        language: pygrep
-        # yamllint disable-line rule:line-length
-        entry: '^(chore|test|feat|fix|build|docs|refactor)!?: ((?!.*(ing))(?!.*(ed))).*$'
-        args: [--multiline, --negate]
-        stages: [commit-msg]
