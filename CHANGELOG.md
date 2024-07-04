@@ -1,4 +1,4 @@
-<!-- markdownlint-configure-file { "MD013": { "MD024": false } } -->
+<!-- markdownlint-configure-file { "MD024": false } -->
 # Changelog
 
 All notable changes to this project will be documented in this file.
