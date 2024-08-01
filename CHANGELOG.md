@@ -1,80 +1,34 @@
+<!-- markdownlint-configure-file { "MD024": false } -->
 # Changelog
 
-## [Unreleased](https://github.com/wtfo-guru/flask-nav3/tree/HEAD)
+All notable changes to this project will be documented in this file.
 
-[Full Changelog](https://github.com/wtfo-guru/flask-nav3/compare/v0.7.0...HEAD)
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-**Merged pull requests:**
+## [Unreleased]
 
-- Bootstrap 5 Renderer [\#100](https://github.com/wtfo-guru/flask-nav3/pull/100) ([coolacid](https://github.com/coolacid))
-- build\(deps-dev\): bump testfixtures from 7.2.2 to 8.1.0 [\#99](https://github.com/wtfo-guru/flask-nav3/pull/99) ([dependabot[bot]](https://github.com/apps/dependabot))
-- chore: poetry update [\#98](https://github.com/wtfo-guru/flask-nav3/pull/98) ([qs5779](https://github.com/qs5779))
-- build\(deps\): bump codecov/codecov-action from 3 to 4 [\#91](https://github.com/wtfo-guru/flask-nav3/pull/91) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps\): bump actions/cache from 3 to 4 [\#90](https://github.com/wtfo-guru/flask-nav3/pull/90) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps\): bump flask from 3.0.0 to 3.0.1 [\#89](https://github.com/wtfo-guru/flask-nav3/pull/89) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps-dev\): bump black from 23.12.1 to 24.1.1 [\#88](https://github.com/wtfo-guru/flask-nav3/pull/88) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps-dev\): bump sphinx-autodoc-typehints from 1.25.2 to 1.25.3 [\#87](https://github.com/wtfo-guru/flask-nav3/pull/87) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps-dev\): bump pytest from 7.4.4 to 8.0.0 [\#86](https://github.com/wtfo-guru/flask-nav3/pull/86) ([dependabot[bot]](https://github.com/apps/dependabot))
-- 0.7.1 dev8 [\#85](https://github.com/wtfo-guru/flask-nav3/pull/85) ([qs5779](https://github.com/qs5779))
-- Poetry update, test group optional [\#74](https://github.com/wtfo-guru/flask-nav3/pull/74) ([qs5779](https://github.com/qs5779))
-- Poetry update, bump build version [\#68](https://github.com/wtfo-guru/flask-nav3/pull/68) ([qs5779](https://github.com/qs5779))
-- Poetry update [\#64](https://github.com/wtfo-guru/flask-nav3/pull/64) ([qs5779](https://github.com/qs5779))
-- Poetry update [\#60](https://github.com/wtfo-guru/flask-nav3/pull/60) ([qs5779](https://github.com/qs5779))
-- Support python 3.12 [\#55](https://github.com/wtfo-guru/flask-nav3/pull/55) ([qs5779](https://github.com/qs5779))
-- build\(deps-dev\): bump packaging from 23.1 to 23.2 [\#53](https://github.com/wtfo-guru/flask-nav3/pull/53) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps-dev\): bump testfixtures from 7.1.0 to 7.2.0 [\#52](https://github.com/wtfo-guru/flask-nav3/pull/52) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps-dev\): bump pytest from 7.4.1 to 7.4.2 [\#51](https://github.com/wtfo-guru/flask-nav3/pull/51) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps\): bump actions/checkout from 3 to 4 [\#50](https://github.com/wtfo-guru/flask-nav3/pull/50) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps-dev\): bump pytest from 7.4.0 to 7.4.1 [\#49](https://github.com/wtfo-guru/flask-nav3/pull/49) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps-dev\): bump setuptools from 67.8.0 to 68.0.0 [\#48](https://github.com/wtfo-guru/flask-nav3/pull/48) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps-dev\): bump mypy from 1.3.0 to 1.4.1 [\#47](https://github.com/wtfo-guru/flask-nav3/pull/47) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps-dev\): bump pytest from 7.3.1 to 7.4.0 [\#46](https://github.com/wtfo-guru/flask-nav3/pull/46) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Poetry update [\#44](https://github.com/wtfo-guru/flask-nav3/pull/44) ([qs5779](https://github.com/qs5779))
-- build\(deps-dev\): bump pytest-cov from 4.0.0 to 4.1.0 [\#42](https://github.com/wtfo-guru/flask-nav3/pull/42) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Poetry update, use GH action for poetry [\#41](https://github.com/wtfo-guru/flask-nav3/pull/41) ([qs5779](https://github.com/qs5779))
-- build\(deps-dev\): bump mypy from 1.2.0 to 1.3.0 [\#38](https://github.com/wtfo-guru/flask-nav3/pull/38) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps\): bump flask from 2.2.4 to 2.2.5 [\#37](https://github.com/wtfo-guru/flask-nav3/pull/37) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps\): bump flask from 2.2.3 to 2.2.4 [\#36](https://github.com/wtfo-guru/flask-nav3/pull/36) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Develop [\#35](https://github.com/wtfo-guru/flask-nav3/pull/35) ([qs5779](https://github.com/qs5779))
-- build\(deps-dev\): bump setuptools from 67.7.1 to 67.7.2 [\#34](https://github.com/wtfo-guru/flask-nav3/pull/34) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps-dev\): bump setuptools from 67.7.0 to 67.7.1 [\#33](https://github.com/wtfo-guru/flask-nav3/pull/33) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps-dev\): bump setuptools from 67.6.1 to 67.7.0 [\#32](https://github.com/wtfo-guru/flask-nav3/pull/32) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps-dev\): bump pytest from 7.3.0 to 7.3.1 [\#31](https://github.com/wtfo-guru/flask-nav3/pull/31) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps-dev\): bump sphinx-autodoc-typehints from 1.22 to 1.23.0 [\#30](https://github.com/wtfo-guru/flask-nav3/pull/30) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps-dev\): bump packaging from 23.0 to 23.1 [\#29](https://github.com/wtfo-guru/flask-nav3/pull/29) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps-dev\): bump pytest from 7.2.2 to 7.3.0 [\#28](https://github.com/wtfo-guru/flask-nav3/pull/28) ([dependabot[bot]](https://github.com/apps/dependabot))
-- build\(deps-dev\): bump mypy from 1.1.1 to 1.2.0 [\#27](https://github.com/wtfo-guru/flask-nav3/pull/27) ([dependabot[bot]](https://github.com/apps/dependabot))
-- fix: Correct read the docs yml config [\#26](https://github.com/wtfo-guru/flask-nav3/pull/26) ([qs5779](https://github.com/qs5779))
-- Develop [\#25](https://github.com/wtfo-guru/flask-nav3/pull/25) ([qs5779](https://github.com/qs5779))
-- build\(deps-dev\): bump nitpick from 0.32.0 to 0.33.1 [\#24](https://github.com/wtfo-guru/flask-nav3/pull/24) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Bump setuptools from 67.6.0 to 67.6.1 [\#23](https://github.com/wtfo-guru/flask-nav3/pull/23) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Bump black from 23.1.0 to 23.3.0 [\#22](https://github.com/wtfo-guru/flask-nav3/pull/22) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Bump setuptools from 67.5.1 to 67.6.0 [\#20](https://github.com/wtfo-guru/flask-nav3/pull/20) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Bump setuptools from 67.5.0 to 67.5.1 [\#19](https://github.com/wtfo-guru/flask-nav3/pull/19) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Bump mypy from 1.0.1 to 1.1.1 [\#18](https://github.com/wtfo-guru/flask-nav3/pull/18) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Bump setuptools from 67.4.0 to 67.5.0 [\#17](https://github.com/wtfo-guru/flask-nav3/pull/17) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Bump pytest from 7.2.1 to 7.2.2 [\#16](https://github.com/wtfo-guru/flask-nav3/pull/16) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Bump black from 22.12.0 to 23.1.0 [\#15](https://github.com/wtfo-guru/flask-nav3/pull/15) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Bump packaging from 22.0 to 23.0 [\#14](https://github.com/wtfo-guru/flask-nav3/pull/14) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Bump setuptools from 65.7.0 to 67.4.0 [\#13](https://github.com/wtfo-guru/flask-nav3/pull/13) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Develop [\#12](https://github.com/wtfo-guru/flask-nav3/pull/12) ([qs5779](https://github.com/qs5779))
-- Bump mypy from 1.0.0 to 1.0.1 [\#11](https://github.com/wtfo-guru/flask-nav3/pull/11) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Bump flask from 2.2.2 to 2.2.3 [\#10](https://github.com/wtfo-guru/flask-nav3/pull/10) ([dependabot[bot]](https://github.com/apps/dependabot))
-- chore: Rebase to main, poetry update [\#9](https://github.com/wtfo-guru/flask-nav3/pull/9) ([qs5779](https://github.com/qs5779))
-- Bump testfixtures from 7.0.4 to 7.1.0 [\#8](https://github.com/wtfo-guru/flask-nav3/pull/8) ([dependabot[bot]](https://github.com/apps/dependabot))
-- docs: Update reaadme [\#7](https://github.com/wtfo-guru/flask-nav3/pull/7) ([qs5779](https://github.com/qs5779))
-- test: Update github actions workflow name [\#6](https://github.com/wtfo-guru/flask-nav3/pull/6) ([qs5779](https://github.com/qs5779))
-- docs: Update readme [\#5](https://github.com/wtfo-guru/flask-nav3/pull/5) ([qs5779](https://github.com/qs5779))
+## [0.7.3-dev1] - 2024-07-04
 
-## [v0.7.0](https://github.com/wtfo-guru/flask-nav3/tree/v0.7.0) (2023-02-03)
+### Changed
 
-[Full Changelog](https://github.com/wtfo-guru/flask-nav3/compare/27f654e514ba2666ddf90be7955662a750fc53d0...v0.7.0)
+- Updated blinker (1.7.0 -> 1.8.2)
+- Updated itsdangerous (2.1.2 -> 2.2.0)
+- Updated jinja2 (3.1.3 -> 3.1.4)
+- Updated werkzeug (3.0.1 -> 3.0.3)
+- Updated flask (3.0.2 -> 3.0.3)
 
-**Merged pull requests:**
+## [0.7.2] - 2024-03-13
 
-- docs: Generate changelog [\#4](https://github.com/wtfo-guru/flask-nav3/pull/4) ([qs5779](https://github.com/qs5779))
-- Release version 0.7.0 [\#3](https://github.com/wtfo-guru/flask-nav3/pull/3) ([qs5779](https://github.com/qs5779))
-- Develop [\#2](https://github.com/wtfo-guru/flask-nav3/pull/2) ([qs5779](https://github.com/qs5779))
-- docs: Update README.md [\#1](https://github.com/wtfo-guru/flask-nav3/pull/1) ([qs5779](https://github.com/qs5779))
+### Added
 
-\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
+- Bootstrap 5 Renderer
+- Support python 3.12
+
+### Fixed
+
+- Correct read the docs yml config
+
+## [v0.7.0] - 2023-02-03
+
+- Initial release
