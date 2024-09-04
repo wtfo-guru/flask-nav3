@@ -31,20 +31,20 @@ repos:
         name: isort (python)
 
   - repo: https://github.com/psf/black
-    rev: 24.4.2  # stable 0
+    rev: 24.8.0  # stable 0
     hooks:
       - id: black
         language_version: python3
 
   - repo: https://github.com/PyCQA/flake8
-    rev: 7.0.0
+    rev: 7.1.1
     hooks:
       - id: flake8
         args: ['--max-line-length=88', '--show-source']
         additional_dependencies: [wemake-python-styleguide >= 0.19.2]
 
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v3.27.0
+    rev: v3.29.0
     hooks:
       - id: commitizen
         stages: [commit-msg]
