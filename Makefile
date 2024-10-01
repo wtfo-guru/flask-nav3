@@ -12,6 +12,7 @@ GITHUB_ORG ?= wtf-guru
 .PHONY: update
 update:
 	poetry update --with test --with docs
+	pre-commit autoupdate
 
 .PHONY: vars
 vars:
