@@ -48,10 +48,15 @@ jobs:
       run: poetry run pip --version >/dev/null 2>&1 || rm -rf .venv
 
     - name: Install dependencies
-      run: poetry install --no-interaction --with=test
+      run: poetry install --with test --no-interaction
+
+    - name: Safety Scan
+      uses: pyupio/safety-action@v1
+      with:
+        api-key: ${{ secrets.SAFETY_API_KEY }}
 
     - name: Run checks
-      run: make test
+      run: make ghtest
 
     # Upload coverage to codecov: https://codecov.io/
     - name: Upload coverage to Codecov

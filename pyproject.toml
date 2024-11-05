@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "flask-nav3"
 description = "Easily create navigation for Flask applications."
-version = "0.7.3-dev3"
+version = "0.7.3-dev4"
 license = "MIT"
 
 authors = [
@@ -44,7 +44,7 @@ doc8 = "^1.0"
 nitpick = "^0.35"
 safety = ">=2.3,<4.0"
 pytest = ">=7.4,<9.0"
-pytest-cov = ">=4,<6"
+pytest-cov = "^6.0.0"
 pytest-randomly = "^3.12"
 isort = "^5.13"
 black = ">=23.12,<25.0"
