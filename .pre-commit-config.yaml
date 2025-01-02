@@ -3,7 +3,7 @@
 ---
 exclude: '^attic/$|^docs/conf.py'
 default_install_hook_types: ["pre-commit", "commit-msg"]
-default_stages: ["commit"]
+default_stages: ["pre-commit"]
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -41,10 +41,10 @@ repos:
     hooks:
       - id: flake8
         args: ['--max-line-length=88', '--show-source']
-        additional_dependencies: [wemake-python-styleguide >= 0.19.2]
+        additional_dependencies: [wemake-python-styleguide >= 1.0.0]
 
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.0.0
+    rev: v4.1.0
     hooks:
       - id: commitizen
         stages: [commit-msg]

@@ -1,7 +1,7 @@
 from flask import current_app, request, url_for
 from markupsafe import Markup
 
-from flask_nav3 import get_renderer
+from flask_nav3.app import get_renderer
 
 
 class NavigationItem:
