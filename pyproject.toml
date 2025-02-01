@@ -46,7 +46,7 @@ safety = ">=2.3,<4.0"
 pytest = ">=7.4,<9.0"
 pytest-cov = "^6.0.0"
 pytest-randomly = "^3.12"
-isort = "^5.13"
+isort = ">=5.13,<7.0"
 black = ">=23.12,<25.0"
 testfixtures = ">=7.0.4,<9.0.0"
 
