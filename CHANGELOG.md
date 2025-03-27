@@ -8,7 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.7.3-dev5] - 2024-12-03
+## [0.7.3-dev8] - 2025-03-27
+
+### Fixed
+
+- docs conf.py, poetry >2.0 compatibility
 
 ### Changed
 
