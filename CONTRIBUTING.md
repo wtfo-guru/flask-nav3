@@ -58,7 +58,7 @@ What the point of this method?
 2. We use issue branches: to implement a new feature or to fix a bug
    create a new branch named `issue-$TASKNUMBER`
 3. Then create a pull request to `main` branch
-4. We use `git tag`s to make releases, so we can track what has changed
+4. We use `git tag` to make releases, so we can track what has changed
    since the latest release
 
 So, this way we achieve an easy and scalable development process

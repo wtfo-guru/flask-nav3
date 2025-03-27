@@ -1,12 +1,11 @@
 SHELL:=/usr/bin/env bash
 
-PROJECT_NAME ?= $(shell basename $$(git rev-parse --show-toplevel) | sed -e "s/^python-//")
-PACKAGE_DIR ?= $(shell echo $(PROJECT_NAME) | tr "-" "_")
-PROJECT_VERSION ?= $(shell grep ^current_version .bumpversion.cfg | awk '{print $$NF'} | tr '-' '.')
-TEST_MASK = tests
-GITHUB_ORG ?= wtf-guru
-
-.PHONY: lint sunit unit publish publish-test
+PROJECT_NAME = $(shell head -10 pyproject.toml|grep ^name | awk '{print $$NF}'|tr -d '"' | tr '-' '_')
+PROJECT_VERSION = $(shell head -10 pyproject.toml|grep ^version | awk '{print $$NF}'|tr -d '"')
+WHEEL_VERSION = $(shell echo $(PROJECT_VERSION)|sed -e 's/-dev/.dev/')
+BUMP_VERSION = $(shell grep ^current_version .bumpversion.cfg | awk '{print $$NF}')
+CONST_VERSION = $(shell grep ^VERSION $(PROJECT_NAME)/constants.py | awk '{print $$NF}'|tr -d '"')
+TEST_MASK ?= tests/*.py
 
 .PHONY: update
 update:
@@ -16,56 +15,77 @@ update:
 .PHONY: vars
 vars:
 	@echo "PROJECT_NAME: $(PROJECT_NAME)"
-	@echo "PACKAGE_DIR: $(PACKAGE_DIR)"
 	@echo "PROJECT_VERSION: $(PROJECT_VERSION)"
+	@echo "WHEEL_VERSION: $(WHEEL_VERSION)"
+	@echo "BUMP_VERSION: $(BUMP_VERSION)"
+	@echo "CONST_VERSION: $(CONST_VERSION)"
+
+.PHONY: version-sanity
+version-sanity:
+ifneq ($(PROJECT_VERSION), $(BUMP_VERSION))
+	$(error Version mismatch PROJECT_VERSION != BUMP_VERSION)
+endif
+ifneq ($(PROJECT_VERSION), $(CONST_VERSION))
+	$(error Version mismatch PROJECT_VERSION != CONST_VERSION)
+endif
+	@echo "Versions are equal $(PROJECT_VERSION), $(BUMP_VERSION), $(CONST_VERSION)"
 
 .PHONY: black
 black:
-	poetry run isort $(PACKAGE_DIR) $(TEST_MASK)
-	poetry run black $(PACKAGE_DIR) $(TEST_MASK)
+	poetry run isort $(PROJECT_NAME) $(TEST_MASK)
+	poetry run black $(PROJECT_NAME) $(TEST_MASK)
 
 .PHONY: mypy
 mypy: black
-	poetry run mypy $(PACKAGE_DIR) $(TEST_MASK)
+	poetry run mypy $(PROJECT_NAME) $(TEST_MASK)
 
+.PHONY: lint
 lint: mypy
-	poetry run flake8 $(PACKAGE_DIR) $(TEST_MASK)
+	poetry run flake8 $(PROJECT_NAME) $(TEST_MASK)
 	poetry run doc8 -q docs
 
+.PHONY: sunit
 sunit:
 	poetry run pytest -s tests
 
+.PHONY: unit
 unit:
 	poetry run pytest tests
 
 .PHONY: package
 package:
-	poetry check
+	poetry check --strict
 	poetry run pip check
+
+.PHONY: publish
+publish: build
+	manage-tag.sh -u v$(PROJECT_VERSION)
+	gh release create v$(PROJECT_VERSION) --generate-notes
+	poetry publish
+
+.PHONY: publish-test
+publish-test: build
+	poetry publish -r test-pypi
 
 .PHONY: safety
 safety:
 	poetry run safety scan --full-report
 
+.PHONY: nitpick
+nitpick:
+	poetry run nitpick -p . check
+
 .PHONY: test
-test: lint package safety unit
+test: nitpick lint package unit
 
 .PHONY: ghtest
 ghtest: lint package unit
 
-publish: clean-build test
-	manage-tag.sh -u v$(PROJECT_VERSION)
-	poetry publish --build
-
-publish-test: clean-build test
-	manage-tag.sh -u v$(PROJECT_VERSION)
-	poetry publish --build -r test-pypi
-
 .PHONY: build
-build: clean-build test
-	manage-tag.sh -u v$(PROJECT_VERSION)
+build: version-sanity safety clean-build test
 	poetry build
-	sync-wheels.sh dist/$(PROJECT_NAME)-$(PROJECT_VERSION)-py3-none-any.whl $(WHEELS)
+	sync-wheels.sh dist/$(PROJECT_NAME)-$(WHEEL_VERSION)-py3-none-any.whl $(WHEELS)
+#	manage-tag.sh -u v$(PROJECT_VERSION)
 
 .PHONY: docs
 docs:
