@@ -55,7 +55,7 @@ jobs:
         api-key: ${{ secrets.SAFETY_API_KEY }}
 
     - name: Run checks
-      run: make ghtest
+      run: make citest
 
     # Upload coverage to codecov: https://codecov.io/
     - name: Upload coverage to Codecov
