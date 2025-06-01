@@ -44,7 +44,7 @@ repos:
         additional_dependencies: [wemake-python-styleguide >= 1.0.0]
 
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.6.0
+    rev: v4.8.2
     hooks:
       - id: commitizen
         stages: [commit-msg]
