@@ -1,6 +1,6 @@
-from dominate import tags
+from dominate import tags  # type: ignore[import-untyped]
 from flask import current_app
-from visitor import Visitor
+from visitor import Visitor  # type: ignore[import-untyped]
 
 
 class Renderer(Visitor):
