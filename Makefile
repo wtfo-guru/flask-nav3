@@ -7,7 +7,6 @@ PROJECT_VERSION = $(shell head -10 pyproject.toml|grep ^version | awk '{print $$
 PACKAGE_DIR = $(PROJECT_NAME)
 WHEEL_VERSION = $(shell echo $(PROJECT_VERSION)|sed -e 's/-dev/.dev/')
 BUMP_VERSION = $(shell grep ^current_version .bumpversion.cfg | awk '{print $$NF}')
-CONST_VERSION = $(shell grep ^VERSION $(PACKAGE_DIR)/constants.py | awk '{print $$NF}'|tr -d '"')
 TEST_MASK ?= tests/*.py
 
 .PHONY: poetry-update
@@ -25,17 +24,25 @@ vars:
 	@echo "PACKAGE_DIR: $(PACKAGE_DIR)"
 	@echo "WHEEL_VERSION: $(WHEEL_VERSION)"
 	@echo "BUMP_VERSION: $(BUMP_VERSION)"
-	@echo "CONST_VERSION: $(CONST_VERSION)"
 
 .PHONY: version-sanity
 version-sanity:
 ifneq ($(PROJECT_VERSION), $(BUMP_VERSION))
 	$(error Version mismatch PROJECT_VERSION != BUMP_VERSION)
 endif
-ifneq ($(PROJECT_VERSION), $(CONST_VERSION))
-	$(error Version mismatch PROJECT_VERSION != CONST_VERSION)
+	@echo "Versions are equal $(PROJECT_VERSION), $(BUMP_VERSION)"
+
+.PHONY: changelog-check
+changelog-check:
+ifneq (,$(findstring dev,$(PROJECT_VERSION)))
+	$(error Cannot pull request when dev version)
+else ifeq (,$(shell grep $(PROJECT_VERSION) CHANGELOG.md))
+	$(error No changelog entry for $(PROJECT_VERSION))
+else ifneq (,$(shell grep Unreleased CHANGELOG.md))
+	$(error Unreleased section in CHANGELOG.md)
+else
+	@echo "Changelog entry found for $(PROJECT_VERSION)"
 endif
-	@echo "Versions are equal $(PROJECT_VERSION), $(BUMP_VERSION), $(CONST_VERSION)"
 
 .PHONY: black
 black:
@@ -80,7 +87,7 @@ safety:
 
 .PHONY: nitpick
 nitpick:
-	poetry run nitpick -p . check
+	nitpick -p . check
 
 .PHONY: test
 test: nitpick lint package unit
@@ -89,7 +96,7 @@ test: nitpick lint package unit
 citest: lint package unit
 
 .PHONY: build
-build: version-sanity safety clean-build test
+build: version-sanity changelog-check safety clean-build test
 	poetry build
 ifdef SYNCH_WHEELS
 	sync-wheels.sh dist/$(PROJECT_NAME)-$(WHEEL_VERSION)-py3-none-any.whl $(WHEELS)
