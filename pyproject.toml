@@ -42,7 +42,7 @@ pytest = ">=7.4,<9.0"
 pytest-cov = "^6.0.0"
 pytest-randomly = "^3.12"
 isort = "^6.0"
-black = "^25.0"
+black = "^25.9"
 testfixtures = ">=7.0.4,<9.0.0"
 
 [tool.poetry.group.docs]
