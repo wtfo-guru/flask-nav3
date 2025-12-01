@@ -7,6 +7,7 @@ PROJECT_VERSION = $(shell head -10 pyproject.toml|grep ^version | awk '{print $$
 PACKAGE_DIR = $(PROJECT_NAME)
 WHEEL_VERSION = $(shell echo $(PROJECT_VERSION)|sed -e 's/-dev/.dev/')
 BUMP_VERSION = $(shell grep ^current_version .bumpversion.cfg | awk '{print $$NF}')
+CONST_VERSION = $(PROJECT_VERSION)
 TEST_MASK ?= tests/*.py
 
 .PHONY: poetry-update
@@ -24,13 +25,17 @@ vars:
 	@echo "PACKAGE_DIR: $(PACKAGE_DIR)"
 	@echo "WHEEL_VERSION: $(WHEEL_VERSION)"
 	@echo "BUMP_VERSION: $(BUMP_VERSION)"
+	@echo "CONST_VERSION: $(CONST_VERSION)"
 
 .PHONY: version-sanity
 version-sanity:
 ifneq ($(PROJECT_VERSION), $(BUMP_VERSION))
 	$(error Version mismatch PROJECT_VERSION != BUMP_VERSION)
 endif
-	@echo "Versions are equal $(PROJECT_VERSION), $(BUMP_VERSION)"
+ifneq ($(PROJECT_VERSION), $(CONST_VERSION))
+	$(error Version mismatch PROJECT_VERSION != CONST_VERSION)
+endif
+	@echo "Versions are equal $(PROJECT_VERSION), $(BUMP_VERSION), $(CONST_VERSION)"
 
 .PHONY: changelog-check
 changelog-check:
@@ -49,8 +54,13 @@ black:
 	poetry run isort $(PACKAGE_DIR) $(TEST_MASK)
 	poetry run black $(PACKAGE_DIR) $(TEST_MASK)
 
+.PHONY: ruff
+ruff: black
+	poetry run ruff format $(PACKAGE_DIR) $(TEST_MASK)
+	poetry run ruff check $(PACKAGE_DIR) $(TEST_MASK)
+
 .PHONY: mypy
-mypy: black
+mypy: ruff
 	poetry run mypy $(PACKAGE_DIR) $(TEST_MASK)
 
 .PHONY: lint
@@ -83,7 +93,7 @@ publish-test: build
 
 .PHONY: safety
 safety:
-	safety scan --full-report
+	safety --proxy-host squid.metaorg.com --proxy-port 3128 --proxy-protocol http scan --full-report
 
 .PHONY: nitpick
 nitpick:
