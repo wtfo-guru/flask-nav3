@@ -2,7 +2,7 @@
 name = "flask-nav3"
 description = "Easily create navigation for Flask applications."
 keywords = ["flask"]
-version = "0.7.3-dev12"
+version = "0.7.3-dev13"
 dynamic = ["classifiers"]
 readme = "README.md"
 authors = [{name = "Quien Sabe", email = "qs5779@mail.com"}]
