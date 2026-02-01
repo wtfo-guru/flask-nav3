@@ -2,7 +2,7 @@
 name = "flask-nav3"
 description = "Easily create navigation for Flask applications."
 keywords = ["flask"]
-version = "0.7.3-dev13"
+version = "0.7.3-dev14"
 dynamic = ["classifiers"]
 readme = "README.md"
 authors = [{name = "Quien Sabe", email = "qs5779@mail.com"}]
@@ -42,7 +42,7 @@ pytest = ">=7.4,<10.0"
 pytest-cov = "^7.0.0"
 pytest-randomly = "^4.0.0"
 isort = "^7.0"
-black = "^25.0"
+black = "^26.0"
 testfixtures = ">=7.0.4,<9.0.0"
 ruff = "^0.14.7"
 
