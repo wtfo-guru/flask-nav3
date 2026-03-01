@@ -5,7 +5,8 @@ name: Flask-Nav3
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
   workflow_dispatch:
 
@@ -22,8 +23,8 @@ jobs:
     strategy:
       matrix:
         python-version: ['3.10', '3.11', '3.12', '3.13', '3.14']
-
     steps:
+    - uses: extractions/setup-just@v3
     - uses: actions/checkout@v6
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v6
@@ -47,10 +48,10 @@ jobs:
       run: poetry run pip --version >/dev/null 2>&1 || rm -rf .venv
 
     - name: Install dependencies
-      run: poetry install --with test --no-interaction
+      run: poetry install --with dev --no-interaction
 
     - name: Run checks
-      run: make citest
+      run: just citest
 
     # Upload coverage to codecov: https://codecov.io/
     - name: Upload coverage to Codecov
