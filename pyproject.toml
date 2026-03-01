@@ -30,21 +30,21 @@ classifiers = [
 ]
 requires-poetry = '>=2.0'
 
-[tool.poetry.group.test]
+[tool.poetry.group.dev]
 optional = true
 
-[tool.poetry.group.test.dependencies]
-mypy = "^1.9"
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.17.0"
 wemake-python-styleguide = "^1.0"
-flake8-pytest-style = ">=2.0,<3.0"
+flake8-pytest-style = "^2.0"
 doc8 = "^2.0"
-pytest = ">=7.4,<10.0"
-pytest-cov = "^7.0.0"
+pytest = "^9.0"
+pytest-cov = "^7.0"
 pytest-randomly = "^4.0.0"
-isort = "^7.0"
+isort = "^8.0"
 black = "^26.0"
 testfixtures = ">=7.0.4,<9.0.0"
-ruff = "^0.14.7"
+ruff = "^0.15.0"
 
 [tool.poetry.group.docs]
 optional = true
