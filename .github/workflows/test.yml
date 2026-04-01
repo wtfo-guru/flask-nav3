@@ -24,6 +24,7 @@ jobs:
         python-version: ['3.10', '3.11', '3.12', '3.13', '3.14']
 
     steps:
+    - uses: extractions/setup-just@v3
     - uses: actions/checkout@v6
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v6
@@ -50,7 +51,7 @@ jobs:
       run: poetry install --with dev --no-interaction
 
     - name: Run checks
-      run: make citest
+      run: just citest
 
     # Upload coverage to codecov: https://codecov.io/
     - name: Upload coverage to Codecov
