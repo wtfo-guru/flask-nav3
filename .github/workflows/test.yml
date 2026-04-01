@@ -47,7 +47,7 @@ jobs:
       run: poetry run pip --version >/dev/null 2>&1 || rm -rf .venv
 
     - name: Install dependencies
-      run: poetry install --with test --no-interaction
+      run: poetry install --with dev --no-interaction
 
     - name: Run checks
       run: make citest
