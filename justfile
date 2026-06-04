@@ -82,6 +82,8 @@ nitpick:
 
 test: nitpick lint package unit
 
+candidate: test
+
 citest: lint package unit
 
 poetry-update:
