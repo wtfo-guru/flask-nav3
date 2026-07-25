@@ -2,10 +2,10 @@ import re
 import sys
 from importlib import import_module
 
-if sys.version_info >= (3, 7):
+if sys.version_info >= (3, 7):  # noqa: UP036 WPS475
     from collections.abc import MutableMapping
 else:
-    from collections import MutableMapping
+    from collections.abc import MutableMapping  # noqa: WPS474
 
 
 def register_renderer(app, iid, renderer, force=True):
@@ -65,13 +65,13 @@ class ElementRegistry(MutableMapping):  # type: ignore [type-arg]
         if callable(the_item):
             try:
                 return the_item()
-            except Exception as ee:
+            except KeyError as ee:
                 # we wrap the exception, because otherwise things get
                 # confusing if __getitem__ returns a KeyError
 
                 # fixme: could use raise_from here on Py3
                 raise NavbarRenderingError(
-                    "Encountered {0} while trying to render navbar".format(repr(ee)),
+                    f"Encountered {ee!r} while trying to render navbar",
                 )
 
         return the_item
@@ -87,7 +87,7 @@ class ElementRegistry(MutableMapping):  # type: ignore [type-arg]
     def __iter__(self):
         """__iter__ magic function."""
         # TODO: Determine if the WPS328 is relavent
-        for key in self._elems.keys():  # noqa: WPS328
+        for key in self._elems:  # noqa: WPS328
             return self[key]
 
     def __len__(self):
@@ -112,8 +112,8 @@ class Nav:
         self.elems = ElementRegistry()
 
         # per default, register the simple renderer
-        simple = "{0}.renderers".format(__name__), "SimpleRenderer"
-        bootstrap5 = "{0}.renderers".format(__name__), "BootStrap5Renderer"
+        simple = f"{__name__}.renderers", "SimpleRenderer"
+        bootstrap5 = f"{__name__}.renderers", "BootStrap5Renderer"
         self._renderers = [
             ("simple", simple),
             ("bootstrap5", bootstrap5),
