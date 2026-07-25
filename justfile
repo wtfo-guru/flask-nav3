@@ -52,20 +52,14 @@ changelog-check:
     echo "Changelog entry found for {{PROJECT_VERSION}}"
   fi
 
-isort:
-	@poetry run isort {{PACKAGE_DIR}} {{TEST_FILES}}
+ruff:
+	@poetry run ruff check --fix {{PACKAGE_DIR}} {{TEST_FILES}}
 
-black: isort
-	@poetry run black {{PACKAGE_DIR}} {{TEST_FILES}}
-
-mypy: black
+mypy: ruff
 	@poetry run mypy {{PACKAGE_DIR}}
 # TODO: Add {{TEST_FILES}} when time permits
 
-ruff: mypy
-	@poetry run ruff check {{PACKAGE_DIR}} {{TEST_FILES}}
-
-lint: ruff
+lint: mypy
 	@poetry run flake8 {{PACKAGE_DIR}} {{TEST_FILES}}
 
 package:

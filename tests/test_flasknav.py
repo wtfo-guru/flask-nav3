@@ -38,7 +38,7 @@ def test_view_arguments(app, hello_view):
 def test_active_without_query(app, hello_view):
     """Test active without query."""
     with app.app_context():
-        url = "{0}&foo=bar".format(hello_view.get_url())
+        url = f"{hello_view.get_url()}&foo=bar"
 
     with app.test_client() as cc:
         assert cc.get(url).data.decode("utf8") == "True"
@@ -49,7 +49,7 @@ def test_active_with_query(app, hello_view):
     hello_view.ignore_query = False
 
     with app.app_context():
-        url = "{0}&foo=bar".format(hello_view.get_url())
+        url = f"{hello_view.get_url()}&foo=bar"
 
     with app.test_client() as cc:
         assert cc.get(url).data.decode("utf8") == "False"

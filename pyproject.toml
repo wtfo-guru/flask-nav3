@@ -2,7 +2,7 @@
 name = "flask-nav3"
 description = "Easily create navigation for Flask applications."
 keywords = ["flask"]
-version = "0.7.3-dev18"
+version = "0.7.3-dev19"
 dynamic = ["classifiers"]
 readme = "README.md"
 authors = [{name = "Quien Sabe", email = "qs5779@mail.com"}]
@@ -44,7 +44,7 @@ pytest-randomly = "^4.0.0"
 isort = "^8.0"
 black = "^26.0"
 testfixtures = ">=7.0.4,<9.0.0"
-ruff = "^0.15.0"
+ruff = "^0.16.0"
 
 [tool.poetry.group.docs]
 optional = true
@@ -59,8 +59,11 @@ sphinx_mdinclude = "^0.6.2"
 requires = ["poetry-core>=1.2.0"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.black]
-target-version = ["py311", "py312", "py313"]
+[tool.ruff.lint]
+external = ["WPS"]
+
+[tool.ruff.lint.pycodestyle]
+max-line-length = 88
 
 [tool.nitpick]
-style = "github://qs5779/devtools/nitpick/nitpick-wtf-style-no-strict.toml"
+style = "github://qs5779/devtools/nitpick/nitpick-ruff-style-no-strict.toml"

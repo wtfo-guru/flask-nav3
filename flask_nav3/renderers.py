@@ -22,10 +22,8 @@ class Renderer(Visitor):
         """
         if current_app.debug:
             return tags.comment(
-                "no implementation in {0} to render {1}".format(
-                    self.__class__.__name__,
-                    node.__class__.__name__,
-                ),
+                f"no implementation in {self.__class__.__name__} "  # noqa: WPS237
+                f"to render {node.__class__.__name__}"
             )
         return ""
 
