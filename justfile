@@ -44,7 +44,7 @@ changelog-check:
   error() { echo "$@" >&2 ; exit 1; }
   if echo "{{PROJECT_VERSION}}" | grep -q "dev"; then
     error "Cannot pull request when dev version"
-  elif ! grep -q "{{PROJECT_VERSION}}" CHANGELOG.md; then
+  elif ! grep -qP "^## \[{{PROJECT_VERSION}}\] - \d\d\d\d-\d\d-\d\d\$" CHANGELOG.md; then
     error "No changelog entry for {{PROJECT_VERSION}}"
   elif grep -q "Unreleased" CHANGELOG.md; then
     error "Unreleased section in CHANGELOG.md"
@@ -69,7 +69,13 @@ unit:
 	@poetry run pytest {{TEST_FILES}}
 
 safety:
-	@safety --proxy-host squid.metaorg.com --proxy-port 3128 --proxy-protocol http scan --full-report
+  #!/usr/bin/env bash
+  set -euo pipefail
+  if head -1 /etc/systemd/resolved.conf.d/local.conf | grep -q roaming ; then
+    safety scan --full-report
+  else
+    safety --proxy-host squid.metaorg.com --proxy-port 3128 --proxy-protocol http scan --full-report
+  fi
 
 nitpick:
 	@nitpick -p . check
@@ -118,4 +124,5 @@ clean-test: ## remove test and coverage artifacts
 	@rm -fr htmlcov/
 	@rm -fr .pytest_cache
 	@rm -fr .mypy_cache
+	@rm -fr .ruff_cache
 	@rm -fr .cache
