@@ -42,7 +42,7 @@ pytest = ">=7.4,<10.0"
 pytest-cov = "^7.0.0"
 pytest-randomly = "^5.0"
 isort = "^9.0"
-black = "^26.0"
+black = "^26.10"
 testfixtures = ">=7.0.4,<9.0.0"
 ruff = "^0.16.0"
 
